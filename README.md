@@ -3,8 +3,8 @@
 ### Functions:
 * Track popular market indexes such as the NASDAQ and S&P
 * Grab the latest stock market news
-* Relate the news and market/company research to the user's portfolio and give suggestions (may be hard to do)
 * Automated daily reminders and summaries
+* (Optional) Relate the news and market/company research to the user's portfolio and give suggestions (may be difficult to achieve)
 
 ### Free tech stack:
 * Language: Python
