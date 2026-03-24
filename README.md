@@ -6,7 +6,7 @@
 * Relate the news and market/company research to the user's portfolio and give suggestions (may be hard to do)
 * Automated daily reminders and summaries
 
-## Free tech stack:
+### Free tech stack:
 * Language: Python
 * Market data: yfinance
 * Database: SQLite
