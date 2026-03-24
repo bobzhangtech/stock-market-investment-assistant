@@ -11,7 +11,7 @@ I feel like the actual stock trading action probably can't be automated, and a s
 * Automated daily reminders and summaries
 * (Optional) Relate the news and market/company research to the user's portfolio and give suggestions (may be difficult to achieve)
 
-## Free tech stack
+## Free Tech Stack
 * Language: Python
 * Market data: yfinance
 * Database: SQLite
