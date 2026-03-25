@@ -9,3 +9,5 @@ __pycache__/
 
 # Others
 experimentation_and_practice.py
+database/
+.git
