@@ -8,5 +8,4 @@ venv/
 __pycache__/
 
 # Others
-.DS_Store
 experimentation_and_practice.py
