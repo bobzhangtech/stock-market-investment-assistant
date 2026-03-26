@@ -1,13 +1,6 @@
-# Ignore virtual environment folder
 venv/
-
-# Ignore API keys
 .env
-
-# Ignore compiled Python files
 __pycache__/
-
-# Others
 experimentation_and_practice.py
-database/
+data/
 .git
