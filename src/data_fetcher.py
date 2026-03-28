@@ -17,15 +17,11 @@ def fetch_nasdaq_data():
     return filtered_nasdaq
 
 
-# Test
-# print(fetch_sp500_data())
-# print(fetch_nasdaq_data())
-
-
 def fetch_ticker_data(ticker):
     try:
         stock = yf.Ticker(ticker.strip().upper())
         info = stock.info
+        quote_type = info.get("quoteType")
 
         analysis_packet = {
             "symbol": ticker.strip().upper(),
@@ -33,7 +29,7 @@ def fetch_ticker_data(ticker):
                 "currentPrice": info.get("currentPrice"),
                 "forwardPE": info.get("forwardPE"),
                 "trailingPE": info.get("trailingPE"),
-                "pegRatio": info.get("pegRatio"),
+                # "pegRatio": info.get("pegRatio"),
             },
             "growth_profitability": {
                 "revGrowth": info.get("revenueGrowth"),
@@ -51,10 +47,6 @@ def fetch_ticker_data(ticker):
         return analysis_packet
     except Exception as e:
         return {"error": str(e)}
-
-
-# Test
-print(fetch_ticker_data("tsla"))
 
 
 def fetch_ticker_news(ticker):
