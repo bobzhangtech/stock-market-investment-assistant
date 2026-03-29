@@ -10,9 +10,21 @@ def main():
             print()
             break
 
+        if not user_input:
+            print("Please enter a ticker symbol.")
+            continue
+
         print("\nFetching data and generating response...")
 
         ticker_data = fetch_ticker_data(user_input)
+
+        if ticker_data is None:
+            print(f"\n'{user_input.upper()}' is not a recognized equity, ETF, or cryptocurrency. Please check the ticker symbol and try again.")
+            continue
+
+        if isinstance(ticker_data, str) and ticker_data.startswith("Error:"):
+            print(f"\nCould not retrieve data for '{user_input.upper()}'. Please check the ticker symbol and try again.")
+            continue
 
         response = ollama.generate(
             model="ministral-3:8b",

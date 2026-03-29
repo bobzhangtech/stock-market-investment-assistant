@@ -1,4 +1,8 @@
+import logging
+
 import yfinance as yf
+
+logging.getLogger("yfinance").setLevel(logging.CRITICAL)
 
 
 def fetch_ticker_data(ticker):
