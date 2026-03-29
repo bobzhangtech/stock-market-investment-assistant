@@ -3,7 +3,7 @@ import yfinance as yf
 
 def fetch_ticker_data(ticker):
     try:
-        asset = yf.Ticker(ticker.strip().upper())
+        asset = yf.Ticker(ticker.upper())
         info = asset.info
         quote_type = info.get("quoteType")
 

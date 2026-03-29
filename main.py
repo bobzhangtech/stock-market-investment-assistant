@@ -4,9 +4,9 @@ from src.data_fetcher import fetch_ticker_data
 
 def main():
     while True:
-        user_input = input("\nEnter ticker symbol (enter 'EXIT' to exit): ")
+        user_input = input("\nEnter ticker symbol (enter 'EXIT' to exit): ").strip()
 
-        if user_input.strip().lower() == "exit":
+        if user_input.lower() == "exit":
             print()
             break
 
