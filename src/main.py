@@ -1,5 +1,5 @@
-from data_fetcher import fetch_ticker_data
 import ollama
+from data_fetcher import fetch_ticker_data
 
 
 def main():
@@ -13,11 +13,13 @@ def main():
         print("\nGenerating response...")
 
         response = ollama.generate(
-            model="huihui_ai/qwen3.5-abliterated:2B",
-            think=True,
-            stream=False,
-            prompt=f"With only the following data, help me determine if this stock is a good buy or not: {(fetch_ticker_data(user_input))}. Don't say you don't know, and don't say you're not a financial advisor, just give me a solid answer in one paragraph with supporting evidence while keeping it concise and to the point. Only refer to the stock by its ticker symbol and not what you think its actual name is. Don't ask any follow-up questions and just end it off after your answer.",
+            model="ministral-3:3b",
+            prompt="You are a stock market investment assistant. With the provided data, help me determine if the stock/ETF/cryptocurrency is a good buy or not. Give me a definitive answer in a single paragraph with supporting evidence while keeping it concise and to the point. If any part of the data is empty or returns none, it only means the data is not documented and doesn't mean anything else. Don't ask any follow-up questions and just end it off after your answer."
+            + f"{(fetch_ticker_data(user_input))}",
             keep_alive=0,
+            options={
+                "num_ctx": 10000,
+            },
         )
 
         print("\n" + response["response"])
