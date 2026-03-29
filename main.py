@@ -10,12 +10,14 @@ def main():
             print()
             break
 
-        print("\nGenerating response...")
+        print("\nFetching data and generating response...")
+
+        ticker_data = fetch_ticker_data(user_input)
 
         response = ollama.generate(
             model="ministral-3:8b",
             prompt="You are a stock market investment assistant. With the provided data, help me determine if the stock/ETF/cryptocurrency is a good buy or not. Give me a definitive answer in a single paragraph with supporting evidence while keeping it concise and to the point. If any part of the data is empty or returns none, it only means the data is not documented and doesn't mean anything else. Don't ask any follow-up questions and just end it off after your answer."
-            + f"{(fetch_ticker_data(user_input))}",
+            + str(ticker_data),
             keep_alive=0,
             options={
                 "num_ctx": 10000,
