@@ -1,6 +1,5 @@
-import logging
-
 import yfinance as yf
+import logging
 
 logging.getLogger("yfinance").setLevel(logging.CRITICAL)
 
