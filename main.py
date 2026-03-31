@@ -1,17 +1,47 @@
 import ollama
 from src.data_fetcher import fetch_ticker_data
+import urllib.request
+import subprocess
+import time
+
+
+def ensure_ollama_running():
+    try:
+        urllib.request.urlopen("http://localhost:11434", timeout=2)
+        return None
+    except Exception:
+        process = subprocess.Popen(
+            ["ollama", "serve"],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+
+        for _ in range(30):
+            time.sleep(1)
+            try:
+                urllib.request.urlopen("http://localhost:11434", timeout=2)
+                return process
+            except Exception:
+                continue
+
+        print("Warning: Could not start Ollama. Make sure it is installed.")
+        return None
 
 
 def main():
+    ollama_process = ensure_ollama_running()
+
     while True:
         user_input = input("\nEnter ticker symbol (enter 'EXIT' to exit): ").strip()
 
         if user_input.lower() == "exit":
+            if ollama_process:
+                ollama_process.terminate()
             print()
             break
 
         if not user_input:
-            print("Please enter a ticker symbol.")
+            print("\nPlease enter a ticker symbol.")
             continue
 
         print("\nFetching data and generating response...")
@@ -32,11 +62,11 @@ def main():
 
         response = ollama.generate(
             model="ministral-3:3b",
-            prompt="You are a stock market investment assistant. With the provided data, help me determine if the stock/ETF/cryptocurrency is a good buy or not. Give me a definitive answer in a single paragraph with supporting evidence while keeping it concise and to the point. If any part of the data is empty or returns none, it only means the data is not documented and doesn't mean anything else. Don't ask any follow-up questions and just end it off after your answer."
+            prompt="You are a stock market investment assistant. With the provided data, help me determine if the stock/ETF/cryptocurrency is a good buy or not. Give me a definitive answer in a single paragraph with supporting evidence while keeping it concise and to the point. If any part of the data is empty or returns none, it only means the data is not documented and doesn't mean the asset is not performing well in that regard. Don't ask any follow-up questions and just end it off after your answer."
             + str(ticker_data),
             keep_alive=0,
             options={
-                "num_ctx": 10000,
+                "num_ctx": 8192,
             },
         )
 
