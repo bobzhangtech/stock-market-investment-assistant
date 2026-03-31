@@ -15,8 +15,8 @@ I built this project to help me easily analyze various investment metrics to bet
 
 ## How To Use
 1. Install [Ollama](https://ollama.com)
-2. Open terminal and run `ollama`
-3. Install Ministral 3 8B by running `ollama pull ministral-3:8b`
+2. Open terminal and run `ollama` to see if it runs properly, and keep it running
+3. Install Ministral 3 3B by running `ollama pull ministral-3:3b`
 4. Download source code from GitHub
 5. Download packages in `requirements.txt` with `pip install -r requirements.txt` (assuming you already have Python installed)
-6. Run `main.py`
+6. From the project directory, run `python main.py`
